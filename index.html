@@ -3,28 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>waterdrop - Article Collection</title>
+    <title>Waterdrop Knowledge Hub | Expert Guides & Reviews</title>
+    <meta name="description" content="Explore the most comprehensive collection of expert guides, maintenance tips, and in-depth reviews for waterdrop products. Decisive insights for informed homeowners.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; padding: 2rem; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
-        ul { list-style: none; padding: 0; }
-        li { padding: 1rem 0; border-bottom: 1px solid #f1f5f9; }
-        a { color: #2563eb; text-decoration: none; font-weight: 600; }
-        a:hover { text-decoration: underline; }
+        :root { 
+            --primary: #2563eb; 
+            --primary-dark: #1d4ed8;
+            --text: #0f172a; 
+            --text-light: #64748b;
+            --bg: #f8fafc; 
+            --card: #ffffff; 
+            --accent: #f1f5f9;
+        }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+        
+        /* Navigation */
+        header { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0; 
+            padding: 1.25rem 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: -0.02em; }
+        .back-link { font-weight: 600; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .back-link:hover { color: var(--primary); }
+
+        /* Bento Grid */
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 2rem;
+        }
+        .article-card { 
+            background: var(--card); 
+            border-radius: 20px; 
+            padding: 0; 
+            display: block; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 1px solid #e2e8f0; 
+            overflow: hidden;
+            position: relative;
+        }
+        .article-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1); 
+            border-color: var(--primary); 
+        }
+        .card-content { padding: 2rem; }
+        .category-tag { 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            background: #eff6ff; 
+            padding: 4px 12px; 
+            border-radius: 100px; 
+            display: inline-block; 
+            margin-bottom: 1rem; 
+        }
+        .article-card h3 { 
+            margin: 0 0 0.75rem 0; 
+            color: var(--text); 
+            font-size: 1.4rem; 
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+        .article-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.5; }
+        .card-footer { 
+            margin-top: 2rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1.25rem;
+        }
+        .date { font-size: 0.8rem; color: #94a3b8; font-weight: 500; }
+        .read-more { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+
+        /* Article content styling */
+        article { width: 100%; }
+        article h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2rem; line-height: 1.1; color: var(--text); }
+        article h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: var(--text); }
+        article p { font-size: 1.125rem; margin-bottom: 1.5rem; color: #334155; }
+        article img { width: 100%; height: auto; border-radius: 16px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        article table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 3rem 0; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+        article th { background: #f8fafc; padding: 1.25rem; font-weight: 700; text-align: left; }
+        article td { padding: 1.25rem; border-top: 1px solid #e2e8f0; }
+        
+        .hero-section { text-align: center; padding: 6rem 0 4rem; }
+        .hero-section h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1rem; }
+        .hero-section p { font-size: 1.25rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+        
+        footer { text-align: center; padding: 6rem 0; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #e2e8f0; margin-top: 4rem; }
+        
+        .checkout-btn { 
+            display: inline-block; 
+            padding: 1rem 2.5rem; 
+            background: linear-gradient(135deg, #e60023 0%, #ff1a1a 100%); 
+            color: white; 
+            border-radius: 100px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -5px rgba(230, 0, 35, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .checkout-btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px -5px rgba(230, 0, 35, 0.4); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>waterdrop Blog</h1>
-        <p>Collection of SEO Optimized Articles</p>
-        <ul id="article-list">
-        <!-- Articles start -->
-        <li><a href="posts/waterdrop-filter-replacement/article.html">WATERDROP FILTER REPLACEMENT</a> - Published on 3/6/2026</li>
-        <li><a href="posts/best-reverse-osmosis-system-2026/article.html">BEST REVERSE OSMOSIS SYSTEM 2026</a> - Published on 3/6/2026</li>
-        <li><a href="posts/alkaline-water-filter-for-kitchen/article.html">ALKALINE WATER FILTER FOR KITCHEN</a> - Published on 3/6/2026</li>
-        <li><a href="posts/waterdrop-under-sink-filter/article.html">WATERDROP UNDER SINK FILTER</a> - Published on 3/6/2026</li>
-        </ul>
-    </div>
+    <header>
+        <nav class="nav-content">
+            <a href="/" class="logo">WATERDROP HUB</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="hero-section">
+            <h1>WATERDROP Insights</h1>
+            <p>Elevate your home environment with our expertly curated reviews and optimization guides.</p>
+        </section>
+        <div class="bento-grid">
+        <!-- ARTICLES_START -->
+        
+        <a href="posts/portable-water-ionizer-machine/" class="article-card bento-item">
+            <div class="card-content">
+                <span class="category-tag">WATERDROP</span>
+                <h3>Best Portable Water Ionizer Machine: Your Ultimate Guide to On-the-Go Alkaline Water</h3>
+                <p>Discover the benefits of a portable water ionizer machine. Learn how to get hydrogen-rich, alkaline ...</p>
+                <div class="card-footer">
+                    <span class="date">March 6, 2026</span>
+                    <span class="read-more">Read Article →</span>
+                </div>
+            </div>
+        </a>
+        </div>
+    </main>
+    <footer>&copy; 2026 waterdrop Insights. All rights reserved.</footer>
 </body>
 </html>
